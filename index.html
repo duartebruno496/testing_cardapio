@@ -15,11 +15,33 @@
     img {
       max-width: 100%;
       height: auto;
-      display: block;
     }
   </style>
 </head>
 <body>
-  <img src="cardapio.jpg" alt="cardapio">
+  <img id="cardapioImage" src="cardapio.jpg" alt="cardapio">
+  <script>
+    function resizeImage() {
+      const img = document.getElementById('cardapioImage');
+      const windowHeight = window.innerHeight;
+      const windowWidth = window.innerWidth;
+      const imgNaturalWidth = img.naturalWidth;
+      const imgNaturalHeight = img.naturalHeight;
+
+      const windowAspectRatio = windowWidth / windowHeight;
+      const imgAspectRatio = imgNaturalWidth / imgNaturalHeight;
+
+      if (imgAspectRatio > windowAspectRatio) {
+        img.style.width = '100%';
+        img.style.height = 'auto';
+      } else {
+        img.style.width = 'auto';
+        img.style.height = '100%';
+      }
+    }
+
+    window.addEventListener('resize', resizeImage);
+    window.addEventListener('load', resizeImage);
+  </script>
 </body>
 </html>
